@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!--        <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">-->
+
+        <title>SMPC on Genomic data</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Just for debugging purposes. Don't actually copy this line! -->
+        <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top navbar-fixed-top" role="navigation">
+            <div class="container">
+                <a href="#" class="brand">SMPC Genome</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="#">Home</a></li>
+                        <!--                        <li ><a href="score.html">Score</a></li>
+                                                <li><a href="publication.html">Publication</a></li>
+                                                <li><a href="Upcoming.html">Upcoming</a></li>-->
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Peoples<b class="caret"></b></a>
+                            <ul class="dropdown-menu" id="menu1">
+                                <!--<li><a href="http://www.linkedin.com/in/rezaulkarimbuet">Rezaul Karim</a></li>-->
+                                <li><a href="http://www.mominalaziz.com">Md. Momin Al Aziz</a></li>
+                                <!--<li><a href="https://sites.google.com/site/sshatabda/">Swakkhar Shatabda</a></li>-->
+                                <li class="divider"></li>
+                                <li><a href="http://www.cs.umanitoba.ca/~noman/">Dr. Noman Mohammed</a></li>
+                                <!--<li><a href="http://www.buet.ac.bd/cse/faculty/facdetail.php?id=kashem">Dr. Md. Abul Kashem Mia</a></li>-->
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <!--<form class="navbar-form pull-right">
+                        <input type="text" placeholder="Email" class="span2">
+                        <input type="password" placeholder="Password" class="span2">
+                        <button class="btn" type="submit">Sign in</button>
+                    </form>-->
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+        <div class="hero-unit">
+            <div class="offset1">
+                <div id="info">
+
+                </div>
+                <div class="row">
+
+                    <label>Enter Sequence</label>
+                    <input class="input-large form-control" placeholder="" id ="text" type="text"  name="search_text">
+                    <label>Operation</label>
+                    <select class="col-lg-2" id="operation">
+                        <option value="count_ngc">Count Without GC</option>
+                        <option value="count">Count</option>
+                        <option value="chi">Chi-Squared Test</option>
+                        <option value="maf">Minor allele frequency</option>
+                        <option value="editdist_OPE">OP Edit Distance</option>
+                        <option value="editdist">Edit Distance</option>
+                        </select>
+                    <div id="nCount">
+                        <label>How Many?</label>
+                        <input class="input-small form-control" placeholder="" id ="count" type="text" value="10"  name="count_edit">
+                    </div>
+                    <label>Snip</label>
+                    <select class="form-control col-lg-3" id="snipID" multiple style="min-height: 200px;">
+                        <option value="rs4426491">rs4426491</option>
+                        <option value="rs10172976">rs10172976</option>
+                        <option value="rs4630725">rs4630725</option>
+                        <option value="rs6709634">rs6709634</option>
+                        <option value="rs7561914">rs7561914</option>
+                        <option value="rs6547957">rs6547957</option>
+                        <option value="rs6733973">rs6733973</option>
+                        <option value="rs10166469">rs10166469</option>
+                        <option value="rs7594717">rs7594717</option>
+                        <option value="rs6547960">rs6547960</option>
+                        <option value="rs4635487">rs4635487</option>
+                        <option value="rs6547961">rs6547961</option>
+                        <option value="rs7599913">rs7599913</option>
+                        <option value="rs2339558">rs2339558</option>
+                        <option value="rs9789723">rs9789723</option>
+                        <option value="rs9789489">rs9789489</option>
+                        <option value="rs10172976">rs10172976</option>
+
+
+                    </select>
+                    <label>Type</label>
+                    <select class="col-lg-2" id="type">
+                        <option value="all">All</option>
+                        <option value="case">Case</option>
+                        <option value="control">Control</option>
+                    </select>
+                    <label>Secure?&nbsp;&nbsp;&nbsp;<input type="checkbox" id="is_secure" checked/></label>
+                </div>
+
+                <div class="row">
+                    <div class="offset3">
+                        <button id="send" class="btn btn-success " type="button">Search</button>
+                    </div>
+                </div>
+
+                <br><br>
+                <div id="output" class="row">
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /container -->
+
+
+
+        <script type="text/javascript" src="js/websocket.js"></script>
+        <!--        <script type="text/javascript" src="whiteboard.js"></script>-->
+        <!--        <script type="text/javascript" src="js/bootstrap.min.js"></script>-->
+
+
+    </body>
+</html>
